@@ -30,3 +30,5 @@ override.tf.json
 
 # Meus arquivos de configuração
 export_env_variables.sh
+
+__pycache__/
