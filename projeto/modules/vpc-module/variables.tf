@@ -6,4 +6,5 @@ variable "vpc_name" {
 variable "vpc_cidr_block" {
   type        = string
   description = "VPC CIDR Block"
+  # default = "192.168.0.0/20"
 }
