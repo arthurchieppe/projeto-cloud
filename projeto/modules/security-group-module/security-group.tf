@@ -4,20 +4,19 @@ resource "aws_security_group" "main" {
   vpc_id      = var.vpc_id
 
   ingress {
-    description      = "TLS from VPC"
-    from_port        = 443
-    to_port          = 443
-    protocol         = "tcp"
-    cidr_blocks      = [var.vpc_cidr_blocks]
-    # ipv6_cidr_blocks = [aws_vpc.main.ipv6_cidr_block]
+    description      = var.ingress_descritpion
+    from_port        = var.ingress_from_port
+    to_port          = var.ingress_to_port
+    protocol         = var.ingress_protocol
+    cidr_blocks      = [var.ingress_cidr_blocks]
   }
 
   egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
+    description      = var.egress_descritpion
+    from_port        = var.egress_from_port
+    to_port          = var.egress_to_port
+    protocol         = var.egress_protocol
+    cidr_blocks      = [var.egress_cidr_blocks]
   }
 
   tags = {

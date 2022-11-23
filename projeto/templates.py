@@ -1,4 +1,6 @@
+from string import Template
 
+terraform_config = """
 terraform {
   required_providers {
     aws = {
@@ -9,11 +11,16 @@ terraform {
 
   required_version = ">= 1.2.0"
 }
+"""
 
+
+aws_provider = """
 provider "aws" {
     region = "us-east-1"
 }
+"""
 
+vpc_subnet = Template("""
 module "aws_vpc" {
   source  = "./modules/vpc-module"
 
@@ -28,7 +35,9 @@ module "aws_subnet" {
   subnet_cidr_block = module.aws_vpc.cidr_block
   vpc_id            = module.aws_vpc.vpc_id
 }
+""")
 
+security_group_only_ssh = Template("""
 module "aws_security_group" {
     source  = "./modules/security-group-module"
 
@@ -44,3 +53,8 @@ module "aws_security_group" {
     egress_from_port    = 0
     egress_to_port      = 0
 }
+""")
+
+
+
+
