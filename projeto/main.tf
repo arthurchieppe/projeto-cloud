@@ -54,13 +54,3 @@ module "aws_instance_micro_0" {
     subnet_id     = module.aws_subnet.subnet_id
     vpc_security_group_ids = [module.aws_security_group_ssh.security_group_id]
 }
-
-module "aws_instance_micro_1" {
-    source  = "./modules/instance-module"
-
-    instance_name = "TF micro Instance 1"
-    instance_type = "t2.micro"
-    instance_ami        = "ami-08c40ec9ead489470"
-    subnet_id     = module.aws_subnet.subnet_id
-    vpc_security_group_ids = [module.aws_security_group_ssh.security_group_id]
-}

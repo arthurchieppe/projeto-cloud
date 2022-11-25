@@ -1,6 +1,5 @@
 resource "aws_security_group" "main" {
   name        = "TF Security Group"
-  description = "Edir"
   vpc_id      = var.vpc_id
 
   ingress {

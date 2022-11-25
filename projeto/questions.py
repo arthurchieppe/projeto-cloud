@@ -5,6 +5,7 @@ main_menu = {
     "choices": [
         "Create new infrastructure",
         "Destroy whole infrastructure",
+        "List resources",
         "Exit",
     ],
 }

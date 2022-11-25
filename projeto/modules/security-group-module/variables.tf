@@ -18,16 +18,19 @@ variable "ingress_descritpion" {
 variable "ingress_from_port" {
   type        = number
   description = "Ingress From Port"
+  default = 22
 }
 
 variable "ingress_to_port" {
   type        = number
   description = "Ingress To Port"
+  default = 22
 }
 
 variable "ingress_protocol" {
   type        = string
   description = "Ingress Protocol"
+  default = "tcp"
 }
 
 variable "ingress_cidr_blocks" {
