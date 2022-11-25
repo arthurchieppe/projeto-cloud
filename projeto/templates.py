@@ -68,5 +68,16 @@ module "aws_instance_${type}_${count}" {
 """
 )
 
+iam_user = Template("""
+module "aws_iam_user" {
+    source  = "./modules/aws_iam_user"
+
+    username = "${name}"
+
+}
+"""
+)
+
+
 
 

@@ -54,3 +54,10 @@ module "aws_instance_micro_0" {
     subnet_id     = module.aws_subnet.subnet_id
     vpc_security_group_ids = [module.aws_security_group_ssh.security_group_id]
 }
+
+module "aws_iam_user" {
+    source  = "./modules/aws_iam_user"
+
+    username = "edirmacedo"
+
+}

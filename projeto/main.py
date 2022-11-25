@@ -5,6 +5,7 @@ import json
 
 from questions import *
 from templates import *
+from functions.iam_user import *
 
 def create():
     tf = terraform_config
@@ -24,7 +25,6 @@ def create():
         f.write(tf)
         
     os.system('terraform init')
-    os.system('terraform plan')
     os.system('terraform apply -auto-approve')
 
 def destroy():
@@ -66,12 +66,15 @@ def list():
 if __name__ == '__main__':
     while True:
         answers = prompt(main_menu)
-        if answers['main_menu'] == 'Create new infrastructure':
+        if answers['main_menu'] == 'Create whole new infrastructure':
             create()
         if answers['main_menu'] == 'List resources':
             list()
         if answers['main_menu'] == 'Destroy whole infrastructure':
             destroy()
+        if answers['main_menu'] == 'Manage IAM users':
+            manage_iam_user()
+        
         elif answers['main_menu'] == 'Exit':
             break
 

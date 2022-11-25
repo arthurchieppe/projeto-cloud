@@ -3,9 +3,10 @@ main_menu = {
     "name": "main_menu",
     "message": "What action do you want to perform?",
     "choices": [
-        "Create new infrastructure",
+        "Create whole new infrastructure",
         "Destroy whole infrastructure",
         "List resources",
+        "Manage IAM users",
         "Exit",
     ],
 }
@@ -21,3 +22,4 @@ number_of_medium_instances = {
     "name": "number_of_instances",
     "message": "How many medium instances do you want to create?",
 }
+
