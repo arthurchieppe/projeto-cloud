@@ -11,6 +11,15 @@ def create():
     tf += aws_provider
     tf += vpc_subnet.substitute()
     tf += security_group_only_ssh.substitute()
+    answers = prompt([number_of_micro_instances])
+    # Prompt micro instances
+    for i in range(int(answers['number_of_instances'])):
+        tf += instance.substitute(count=i, instance_type="t2.micro", type="micro")
+    # Prompt medium instances
+    answers = prompt([number_of_medium_instances])
+    for i in range(int(answers['number_of_instances'])):
+        tf += instance.substitute(count=i, instance_type="t2.medium", type="medium")
+
     with open('main.tf', 'w') as f:
         f.write(tf)
         

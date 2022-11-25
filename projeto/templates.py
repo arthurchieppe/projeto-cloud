@@ -38,7 +38,7 @@ module "aws_subnet" {
 """)
 
 security_group_only_ssh = Template("""
-module "aws_security_group" {
+module "aws_security_group_ssh" {
     source  = "./modules/security-group-module"
 
     security_group_name = "SSH Only"
@@ -55,6 +55,18 @@ module "aws_security_group" {
 }
 """)
 
+instance = Template("""
+module "aws_instance_${type}_${count}" {
+    source  = "./modules/instance-module"
+
+    instance_name = "TF ${type} Instance ${count}"
+    instance_type = "${instance_type}"
+    instance_ami        = "ami-08c40ec9ead489470"
+    subnet_id     = module.aws_subnet.subnet_id
+    vpc_security_group_ids = [module.aws_security_group_ssh.security_group_id]
+}
+"""
+)
 
 
 

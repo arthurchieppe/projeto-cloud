@@ -29,7 +29,7 @@ module "aws_subnet" {
   vpc_id            = module.aws_vpc.vpc_id
 }
 
-module "aws_security_group" {
+module "aws_security_group_ssh" {
     source  = "./modules/security-group-module"
 
     security_group_name = "SSH Only"
@@ -43,4 +43,24 @@ module "aws_security_group" {
     egress_protocol     = "-1"
     egress_from_port    = 0
     egress_to_port      = 0
+}
+
+module "aws_instance_micro_0" {
+    source  = "./modules/instance-module"
+
+    instance_name = "TF micro Instance 0"
+    instance_type = "t2.micro"
+    instance_ami        = "ami-08c40ec9ead489470"
+    subnet_id     = module.aws_subnet.subnet_id
+    vpc_security_group_ids = [module.aws_security_group_ssh.security_group_id]
+}
+
+module "aws_instance_micro_1" {
+    source  = "./modules/instance-module"
+
+    instance_name = "TF micro Instance 1"
+    instance_type = "t2.micro"
+    instance_ami        = "ami-08c40ec9ead489470"
+    subnet_id     = module.aws_subnet.subnet_id
+    vpc_security_group_ids = [module.aws_security_group_ssh.security_group_id]
 }

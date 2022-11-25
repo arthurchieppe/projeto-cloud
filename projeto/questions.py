@@ -8,3 +8,15 @@ main_menu = {
         "Exit",
     ],
 }
+
+number_of_micro_instances = {
+    "type": "input",
+    "name": "number_of_instances",
+    "message": "How many micro instances do you want to create?\n (You will be able to create medium instances later)",
+}
+
+number_of_medium_instances = {
+    "type": "input",
+    "name": "number_of_instances",
+    "message": "How many medium instances do you want to create?",
+}
