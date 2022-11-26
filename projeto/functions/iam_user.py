@@ -30,8 +30,12 @@ def list_iam_users():
             print(f"ARN: {resource['instances'][0]['attributes']['arn']}")
 
 def delete_iam_users():
-    print("IAM users:\n")
-    list_iam_users()
+    # print("IAM users:\n")
+    # list_iam_users()
+    # print("Type the name of the user you want to delete")
+    # answers = prompt(name_of_iam_user)
+    # with open("main.tf", "r") as f:
+    pass
 
 def manage_iam_user():
     answers = prompt(actions_iam_user)

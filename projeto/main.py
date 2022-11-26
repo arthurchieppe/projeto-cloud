@@ -2,6 +2,7 @@ from templates import *
 from PyInquirer import prompt
 import os
 import json
+import hcl2
 
 from questions import *
 from templates import *
@@ -20,10 +21,18 @@ def create():
     answers = prompt([number_of_medium_instances])
     for i in range(int(answers['number_of_instances'])):
         tf += instance.substitute(count=i, instance_type="t2.medium", type="medium")
+    
+
+    
 
     with open('main.tf', 'w') as f:
         f.write(tf)
-        
+    with open('main.tf', 'r') as f:
+        temp_dict = hcl2.load(f)
+        # Json dumps to main.tf.json
+        with open('main.tf.json', 'w') as file:
+            json.dump(temp_dict, file, indent=2)
+    os.remove("main.tf")
     os.system('terraform init')
     os.system('terraform apply -auto-approve')
 
