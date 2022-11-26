@@ -1,0 +1,3 @@
+Todo cloud:
+Criar novas instancias e deletar instancias
+Criar security groups, mudar regras, assign to instance, e deletar security group.
