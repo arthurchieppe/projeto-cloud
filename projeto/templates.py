@@ -68,12 +68,14 @@ module "aws_instance_${type}_${count}" {
 """
 )
 
+
+# JSON templates
 iam_user = Template("""
-module "aws_iam_user" {
-    source  = "./modules/aws_iam_user"
-
-    username = "${name}"
-
+{
+    "aws_iam_user_${username}": {
+        "source": "./modules/aws_iam_user",
+        "username": "${username}"
+    }
 }
 """
 )

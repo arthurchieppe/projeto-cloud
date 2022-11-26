@@ -2,16 +2,24 @@ from templates import *
 from PyInquirer import prompt
 import os
 import json
+from json_templates import JsonTemplates
+
 
 from functions.user_questions import *
 
 def create_iam_user():
     answers = prompt(name_of_iam_user)
-    with open("main.tf", "r") as f:
-        tf = f.read()
-    tf += iam_user.substitute(name=str(answers['name_of_iam_user']))
-    with open("main.tf", "w") as f:
-        f.write(tf)
+    if answers["name_of_iam_user"] == "":
+        print("You must provide a name for the IAM user")
+        return
+    user_json = json.loads(iam_user.substitute(username=answers["name_of_iam_user"]))
+    # Check if new_dict is list
+    with open("main.tf.json", "r") as f:
+        tf = json.load(f)
+    tf["module"].append(user_json)
+    print(tf)
+    with open("main.tf.json", "w") as f:
+        json.dump(tf, f, indent=2)
     os.system('terraform init')
     os.system('terraform apply -auto-approve')
 
@@ -47,3 +55,4 @@ def manage_iam_user():
         list_iam_users()
     if answers['actions_iam_user'] == 'Exit':
         return
+
