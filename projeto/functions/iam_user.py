@@ -31,19 +31,31 @@ def list_iam_users():
     # print(json.dumps(json.loads(show), indent=2, sort_keys=True))
     for i, resource in enumerate(show['resources']):
         if "aws_iam_user" in resource['module']:
+            print()
             print(f"Module: {resource['module']}")
             print(f"Type: {resource['type']}")
             print(f"Name: {resource['name']}")
-            print(f"ID: {resource['instances'][0]['attributes']['id']}")
+            print(f"Username: {resource['instances'][0]['attributes']['id']}")
             print(f"ARN: {resource['instances'][0]['attributes']['arn']}")
 
-def delete_iam_users():
-    # print("IAM users:\n")
-    # list_iam_users()
-    # print("Type the name of the user you want to delete")
-    # answers = prompt(name_of_iam_user)
-    # with open("main.tf", "r") as f:
-    pass
+def delete_iam_user():
+    list_iam_users()
+    print("Type the username of the user you want to delete (without quotes)")
+    answers = prompt(name_of_iam_user)
+    with open("main.tf.json", "r") as f:
+        tf = json.load(f)
+        for i, resource in enumerate(tf['module']):
+            print(resource.keys())
+            if f"aws_iam_user_{answers['name_of_iam_user']}" in resource.keys():
+                del tf['module'][i]
+                with open("main.tf.json", "w") as f:
+                    json.dump(tf, f, indent=2)
+                os.system('terraform init')
+                os.system('terraform apply -auto-approve')
+                return
+    
+    print("User not found")
+    
 
 def manage_iam_user():
     answers = prompt(actions_iam_user)

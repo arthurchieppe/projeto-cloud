@@ -75,12 +75,6 @@
       }
     },
     {
-      "aws_iam_user_leo": {
-        "source": "./modules/aws_iam_user",
-        "username": "leo"
-      }
-    },
-    {
       "aws_iam_user_edir": {
         "source": "./modules/aws_iam_user",
         "username": "edir"
