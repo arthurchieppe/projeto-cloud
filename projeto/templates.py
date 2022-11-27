@@ -109,8 +109,11 @@ instance_json = Template("""
     "instance_type" : "${instance_type}",
     "instance_ami"        : "ami-08c40ec9ead489470",
     "subnet_id"     : "${subnet_id}",
-    "vpc_security_group_ids" : {vpc_security_group_ids}
+    "vpc_security_group_ids" : [
+          "${security_group_id}"
+        ]
   }
+}
 """
 )
 
