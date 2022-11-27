@@ -21,6 +21,7 @@ def create_security_group():
     
 def assign_security_group_to_instance():
     list_instances()
+    list_security_groups()
     answers = prompt(assign_security_group_to_instance_questions)
     
     with open("main.tf.json", "r") as f:
