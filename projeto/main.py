@@ -46,7 +46,7 @@ def destroy():
 # def create_security_group():
 
 
-def list():
+def list_modules():
     print("Resources allocated:\n")
     with open("terraform.tfstate", "r") as f:
         show = json.load(f)
@@ -82,7 +82,7 @@ if __name__ == '__main__':
         if answers['main_menu'] == 'Create whole new infrastructure':
             create()
         if answers['main_menu'] == 'List resources':
-            list()
+            list_modules()
         if answers['main_menu'] == 'Manage security groups':
             manage_security_group()
         if answers['main_menu'] == 'Manage instances':

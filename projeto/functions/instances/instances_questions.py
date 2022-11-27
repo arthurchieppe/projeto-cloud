@@ -1,7 +1,7 @@
-name_of_instances = {
+delete_instance = {
     "type": "input",
-    "name": "name_of_instances",
-    "message": "What is the name of the IAM user?"
+    "name": "delete_instance",
+    "message": "What is the module name ending of the instance you want to delete? (Ex: micro_0, medium_1) "
 }
 
 actions_instances = {
@@ -15,3 +15,4 @@ actions_instances = {
         "Exit",
     ],
 }
+
