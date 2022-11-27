@@ -41,3 +41,9 @@ assign_security_group_to_instance_questions = [
         "message": "What is the security group module name that you want to assign to the instance? (Ex: ssh)",
     }
 ]
+
+delete_security_group_questions = {
+        "type": "input",
+        "name": "security_group_name",
+        "message": "What is the name of the security group you want to delete? (ex: ssh)",
+    }

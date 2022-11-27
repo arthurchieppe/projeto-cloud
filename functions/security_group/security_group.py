@@ -84,13 +84,29 @@ def list_instances():
             print(f"Availability zone: {resource['instances'][0]['attributes']['availability_zone']}")
             print(f"Subnet ID: {resource['instances'][0]['attributes']['subnet_id']}")
 
+def delete_security_group():
+    list_security_groups()
+    print("\n !!! WARNING: do not attempt to delete security groups that are assigned to an instance\n  \
+        Make sure that you have deleted all instances that use the security group before deleting it !!!\n")
+    answers = prompt(delete_security_group_questions)
+    with open("main.tf.json", "r") as f:
+        tf = json.load(f)
+    for i, resource in enumerate(tf['module']):
+        if f"aws_security_group_{answers['security_group_name']}" in list(resource.keys())[0]:
+            del tf['module'][i]
+            break
+    with open("main.tf.json", "w") as f:
+        json.dump(tf, f, indent=2)
+    os.system('terraform init')
+    os.system('terraform apply -auto-approve')
+
 def manage_security_group():
     while True:
         answers = prompt(actions_security_group)
         if answers["actions_security_group"] == "Create new security group":
             create_security_group()
-        # elif answers["actions_security_group"] == "Delete security group":
-        #     delete_security_group()
+        elif answers["actions_security_group"] == "Delete security group":
+            delete_security_group()
         elif answers["actions_security_group"] == "List security groups":
             list_security_groups()
         elif answers["actions_security_group"] == "Assign security group to instance":
