@@ -145,6 +145,30 @@
           "${module.aws_security_group_ssh.security_group_id}"
         ]
       }
+    },
+    {
+      "aws_instance_medium_3": {
+        "source": "./modules/instance-module",
+        "instance_name": "TF medium Instance 3",
+        "instance_type": "t2.medium",
+        "instance_ami": "ami-08c40ec9ead489470",
+        "subnet_id": "${module.aws_subnet.subnet_id}",
+        "vpc_security_group_ids": [
+          "${module.aws_security_group_ssh.security_group_id}"
+        ]
+      }
+    },
+    {
+      "aws_instance_medium_4": {
+        "source": "./modules/instance-module",
+        "instance_name": "TF medium Instance 4",
+        "instance_type": "t2.medium",
+        "instance_ami": "ami-08c40ec9ead489470",
+        "subnet_id": "${module.aws_subnet.subnet_id}",
+        "vpc_security_group_ids": [
+          "${module.aws_security_group_ssh.security_group_id}"
+        ]
+      }
     }
   ]
 }
