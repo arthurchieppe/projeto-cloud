@@ -58,32 +58,39 @@
         "instance_ami": "ami-08c40ec9ead489470",
         "subnet_id": "${module.aws_subnet.subnet_id}",
         "vpc_security_group_ids": [
-          "${module.aws_security_group_ssh.security_group_id}"
+          "${module.aws_security_group_ssh.security_group_id}",
+          "${module.aws_security_group_arthur.security_group_id}"
         ]
       }
     },
     {
-      "aws_instance_micro_1": {
-        "source": "./modules/instance-module",
-        "instance_name": "TF micro Instance 1",
-        "instance_type": "t2.micro",
-        "instance_ami": "ami-08c40ec9ead489470",
-        "subnet_id": "${module.aws_subnet.subnet_id}",
-        "vpc_security_group_ids": [
-          "${module.aws_security_group_ssh.security_group_id}"
-        ]
+      "aws_security_group_arthur": {
+        "source": "./modules/security-group-module",
+        "security_group_name": "arthur",
+        "vpc_id": "${module.aws_vpc.vpc_id}",
+        "ingress_cidr_blocks": "0.0.0.0/0",
+        "ingress_protocol": "tcp",
+        "ingress_from_port": 70,
+        "ingress_to_port": 70,
+        "egress_cidr_blocks": "0.0.0.0/0",
+        "egress_protocol": "-1",
+        "egress_from_port": 0,
+        "egress_to_port": 0
       }
     },
     {
-      "aws_instance_medium_0": {
-        "source": "./modules/instance-module",
-        "instance_name": "TF medium Instance 0",
-        "instance_type": "t2.medium",
-        "instance_ami": "ami-08c40ec9ead489470",
-        "subnet_id": "${module.aws_subnet.subnet_id}",
-        "vpc_security_group_ids": [
-          "${module.aws_security_group_ssh.security_group_id}"
-        ]
+      "aws_security_group_edir": {
+        "source": "./modules/security-group-module",
+        "security_group_name": "edir",
+        "vpc_id": "${module.aws_vpc.vpc_id}",
+        "ingress_cidr_blocks": "0.0.0.0/0",
+        "ingress_protocol": "tcp",
+        "ingress_from_port": 8080,
+        "ingress_to_port": 8080,
+        "egress_cidr_blocks": "0.0.0.0/0",
+        "egress_protocol": "-1",
+        "egress_from_port": 0,
+        "egress_to_port": 0
       }
     }
   ]

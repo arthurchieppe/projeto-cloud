@@ -1,6 +1,0 @@
-{
-    "aws_iam_user": {
-        "source": "./modules/aws_iam_user",
-        "username": "{{ username }}"
-    }
-}

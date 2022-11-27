@@ -6,6 +6,8 @@ main_menu = {
         "Create whole new infrastructure",
         "Destroy whole infrastructure",
         "List resources",
+        "Manage security groups",
+        "Manage instances",
         "Manage IAM users",
         "Exit",
     ],

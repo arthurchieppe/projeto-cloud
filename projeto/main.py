@@ -7,7 +7,10 @@ import hcl2
 
 from questions import *
 from templates import *
-from functions.iam_user import *
+from functions.iam_user.iam_user import *
+from functions.security_group.security_group import *
+from functions.instances.instances import *
+
 
 def create():
     tf = terraform_config
@@ -80,6 +83,10 @@ if __name__ == '__main__':
             create()
         if answers['main_menu'] == 'List resources':
             list()
+        if answers['main_menu'] == 'Manage security groups':
+            manage_security_group()
+        if answers['main_menu'] == 'Manage instances':
+            manage_instances()
         if answers['main_menu'] == 'Destroy whole infrastructure':
             destroy()
         if answers['main_menu'] == 'Manage IAM users':

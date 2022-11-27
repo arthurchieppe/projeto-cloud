@@ -80,6 +80,58 @@ iam_user = Template("""
 """
 )
 
+security_group_json = Template("""
+{
+  "aws_security_group_${security_group_name}" : {
+    "source"  : "./modules/security-group-module",
+
+    "security_group_name" : "${security_group_name}",
+    "vpc_id"              : "${vpc_id}",
+    "ingress_cidr_blocks" : "0.0.0.0/0",
+    "ingress_protocol"    : "tcp",
+    "ingress_from_port"   : ${ingress_from_port},
+    "ingress_to_port"     : ${ingress_to_port},
+
+    "egress_cidr_blocks"  : "0.0.0.0/0",
+    "egress_protocol"     : "-1",
+    "egress_from_port"    : 0,
+    "egress_to_port"      : 0
+  }
+}
+""")
+
+instance_json = Template("""
+{
+  "aws_instance_${type}_${count}" : {
+    "source"  : "./modules/instance-module",
+
+    "instance_name" : "TF ${type} Instance ${count}",
+    "instance_type" : "${instance_type}",
+    "instance_ami"        : "ami-08c40ec9ead489470",
+    "subnet_id"     : "${subnet_id}",
+    "vpc_security_group_ids" : {vpc_security_group_ids}
+  }
+"""
+)
+
+
+# security_group_json = Template("""
+# module "aws_security_group_ssh" {
+#     source  = "./modules/security-group-module"
+
+#     security_group_name = "SSH Only"
+#     vpc_id              = module.aws_vpc.vpc_id
+#     ingress_cidr_blocks = "0.0.0.0/0"
+#     ingress_protocol    = "tcp"
+#     ingress_from_port   = 22
+#     ingress_to_port     = 22
+
+#     egress_cidr_blocks  = "0.0.0.0/0"
+#     egress_protocol     = "-1"
+#     egress_from_port    = 0
+#     egress_to_port      = 0
+# }
+# """)
 
 
 

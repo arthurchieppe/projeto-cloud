@@ -5,7 +5,7 @@ import json
 from json_templates import JsonTemplates
 
 
-from functions.user_questions import *
+from functions.iam_user.user_questions import *
 
 def create_iam_user():
     answers = prompt(name_of_iam_user)
@@ -45,7 +45,6 @@ def delete_iam_user():
     with open("main.tf.json", "r") as f:
         tf = json.load(f)
         for i, resource in enumerate(tf['module']):
-            print(resource.keys())
             if f"aws_iam_user_{answers['name_of_iam_user']}" in resource.keys():
                 del tf['module'][i]
                 with open("main.tf.json", "w") as f:
