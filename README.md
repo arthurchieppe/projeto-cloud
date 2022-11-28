@@ -47,7 +47,7 @@ A primeira ação a ser feita no programa é selecionar *Create Whole new Infrae
 
 Nessa opção o usuário pode escolher quantas máquinas *micro* e *medium* ele deseja criar. Os módulos das máquinas criadas terão o padrão de nome a seguir:
 ```
-aws_instance_{type}_{count}" (Ex: aws_instance_micro_0, aws_instance_medium_1, etc)
+aws_instance_{type}_{count} (Ex: aws_instance_micro_0, aws_instance_medium_1, etc)
 ```
 Com esse programa não é possível personalizar configurações de VPC e Subnet, valores escolhidos e que funcionam já foram pré-definidos.
 
