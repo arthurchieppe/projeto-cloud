@@ -15,6 +15,13 @@ Com esse programa, o usuário é capaz de provisionar instâncias EC2, criar e g
 
 * TerraForm
 * Instalar as bibliotecas no requirements.txt
+* Ter as credenciais da AWS nas environments variables, como no comando abaixo:
+
+```
+export AWS_ACCESS_KEY_ID=
+export AWS_SECRET_ACCESS_KEY=
+```
+
 ### Caso esteja utilizando o Python 3.10:
 
 Alterar linha no arquivo: 
