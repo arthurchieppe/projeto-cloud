@@ -5,11 +5,11 @@ Aluno: Arthur Gomes Chieppe
 
 # A proposta do projeto
 
-Nesse programa, almeja-se tornar o deploy e a gerencia de instancias EC2 na AWS uma tarefa facil, rápida, reporduzível e programática. Para atingir esse objetivo, um programa com CLI em Python foi desenvolvido para abstrair o desenvolvimento de arquivos de configuração do TerraForm.
+Nesse programa, almeja-se tornar o deploy e a gerencia de instancias EC2 na AWS uma tarefa facil, rápida, reproduzível e programática. Para atingir esse objetivo, um programa com CLI em Python foi desenvolvido para abstrair o desenvolvimento de arquivos de configuração do TerraForm.
 
 # Features do programa:
 
-Com esse programa, o usuário é capaz de provisionar instâncias EC2, criar e gerenciar security groups e até mesmo criar e deletar usuários IAM. Além disso, a aplicação também lista todas as caraccterísticas da configuração atualmente existente.
+Com esse programa, o usuário é capaz de provisionar instâncias EC2, criar e gerenciar security groups e até mesmo criar e deletar usuários IAM. Além disso, a aplicação também lista todas as características da configuração atualmente existente.
 
 # Requerimentos:
 
@@ -42,7 +42,7 @@ Nessa opção o usuário pode escolher quantas máquinas *micro* e *medium* ele 
 ```
 aws_instance_{type}_{count}" (Ex: aws_instance_micro_0, aws_instance_medium_1, etc)
 ```
-Com esse programa não é possível personalizar confirgurações de VPC e Subnet, valores escolhidos e que funcionam já foram pré-definidos.
+Com esse programa não é possível personalizar configurações de VPC e Subnet, valores escolhidos e que funcionam já foram pré-definidos.
 
 Aṕos a configuração inicial, o usuário pode realizar o seguinte:
 * Destruir toda a infraestrutura criada
@@ -60,12 +60,24 @@ micro_1
 ```
 ## Gerenciar security groups
 
-O menu de gerenciar security groups permite o usuário criar, deletar, listar e designar um security group a uma instância. Ao deletar, o programa funciona da mesma forma que ao deletar instâncias, perguntando ao usuário o final do nome do módulo do seucirty group que deseja remover. Por exemplo, se o módulo se chama "aws_security_group_mysql", o input do usuário deve ser:
+O menu de gerenciar security groups permite o usuário criar, deletar, listar e designar um security group a uma instância. Ao deletar, o programa funciona da mesma forma que ao deletar instâncias, perguntando ao usuário o final do nome do módulo do security group que deseja remover. Por exemplo, se o módulo se chama "aws_security_group_mysql", o input do usuário deve ser:
 ```
 mysql
 ```
 
-Note que para deletar um security group, o usuário deve se certificar que ele não esteja aplicado em nenhuma instância. Caso ele esteja, é necessário apagar a instância em questão, pois o programa permite ao usuário apenas associor um security group a uma instância, sendo a desassociação não suportada pelo programa.
+Note que para deletar um security group, o usuário deve se certificar que ele não esteja aplicado em nenhuma instância. Caso ele esteja, é necessário apagar a instância em questão, pois o programa permite ao usuário apenas associar um security group a uma instância, sendo a desassociação não é suportada pelo programa.
+
+## Gerenciar usuários IAM
+
+Com esse programa, é possível criar, listar e deletar usuários IAM na AWS a partir do TerraForm. Como de praxe, para deletar é necessário informar o final do nome do módulo do usuário_iam que deseja remover. Por exemplo, se o módulo se chama "aws_security_group_edirmacedo", o input do usuário deve ser:
+```
+edirmacedo
+```
+
+# Troubleshooting:
+
+Em caso de qualquer erro não contemplado pelo programa, recomenda-se que o usuário crie uma nova infraestrutura a partir da seleção *Create whole new infraestructure*. Com essa opção, quaisquer eventuais erros serão sobrescritos.
+
 
 
 
